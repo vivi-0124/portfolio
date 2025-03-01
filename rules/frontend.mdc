@@ -26,32 +26,21 @@ alwaysApply: false
 - Tailwind CSSのブレークポイント (sm, md, lg, xl など) を利用し、モバイルファーストでスタイリングを行う。
 
 ## 画像タグ
-### next/image コンポーネント
-- 原則として `next/image` コンポーネントを使用し、Next.js によるパフォーマンス最適化の恩恵を受ける。
-- 適切なサイズ指定（width / height）を行い、レイアウトシフトを防止する。
-- 以下のように適切な props を設定する：
+### imgタグ
+- next/image は使用せず、<img> タグに loading="lazy" 属性を設定する。
+- サイズが確定している画像は width / height 属性も明示的に付与する。
+- 以下のように適切な属性を設定する：
   ```tsx
-  import Image from 'next/image';
-  
-  // 固定サイズの場合
-  <Image
+  <img
     src="/images/example.jpg"
+    alt="説明文"
+    loading="lazy"
     width={800}
     height={600}
-    alt="説明文"
-    priority={/* 重要な画像の場合は true */}
-  />
-  
-  // レスポンシブの場合
-  <Image
-    src="/images/example.jpg"
-    fill
-    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-    alt="説明文"
-    className="object-cover"
+    className="object-cover w-full h-full"
   />
   ```
-- SVGやアイコンなど単純な画像や、最適化の必要がない特殊なケースのみ、通常の `<img>` タグの使用を検討する。
+- 絶対配置が必要な場合は、親要素に relative クラスを設定し、画像に absolute クラスを追加する。
 
 ## アイコン
 - lucide-react を利用する。セクションごとのアイコンマッピングは src/consts/category-icons.ts などで一元管理。
@@ -109,3 +98,5 @@ alwaysApply: false
 - Server Componentsでのエラーはerror.tsxで、Client Componentsでのエラーはtry/catchとtoastで対応する
 
 # クライアントライブラリ（フロントエンド）の注意書き
+
+

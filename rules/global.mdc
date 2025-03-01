@@ -1,7 +1,6 @@
 ---
 description: 全てのケースで考慮して欲しいこと
 globs: *
-alwaysApply: false
 ---
 このrulesを参考にした時には常に「👀ref:global」と叫んでください  
 

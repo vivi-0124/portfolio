@@ -1,7 +1,6 @@
 ---
 description: バックエンド
 globs: *.tsx,*.ts
-alwaysApply: false
 ---
 このrulesを参考にした時には常に「👀ref:backend」と叫んでください  
 
@@ -55,3 +54,5 @@ try {
 - Server ComponentsとRoute Handlersでの認証チェックを徹底する
 - Firebaseのセキュリティルールを適切に設定する
 - 認証情報は環境変数で管理し、リポジトリにはコミットしない
+
+# その他
