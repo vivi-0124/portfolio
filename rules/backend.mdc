@@ -1,0 +1,57 @@
+---
+description: バックエンド
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+このrulesを参考にした時には常に「👀ref:backend」と叫んでください  
+
+# API実装方法
+## Route Handlers
+- APIエンドポイントは`app/api`ディレクトリ内に`route.tsx`ファイルとして実装する
+- レスポンスはNext.js 13以降の`Response`オブジェクトを使用する
+```tsx
+// app/api/example/route.tsx
+export async function GET(request: Request) {
+  return Response.json({ data: 'example' })
+}
+```
+
+## Server Actions
+- フォーム処理やデータ更新など、認証が必要な操作はServer Actionsを使用
+- Server Actionsは`lib/actions`ディレクトリにまとめる
+- 各アクションの先頭には必ず`'use server'`ディレクティブを記述する
+
+# エラーハンドリング
+- try/catch で明確なエラーコードやメッセージを返し、クライアントがハンドリングしやすいようにする。
+- 例外発生時にはステータスコードを 4xx/5xx で応答し、レスポンスにエラーメッセージを含める。
+- Route Handlersでのエラーレスポンス例:
+```tsx
+try {
+  // 処理
+} catch (error) {
+  console.error('エラー詳細:', error);
+  return Response.json(
+    { error: 'エラーメッセージ' },
+    { status: 500 }
+  );
+}
+```
+
+# ログ
+- console.log, console.debug ,console.errorの使い分けを行う
+- 重要なイベントやエラーは適切にログを残す。
+- 個人情報や秘匿情報はログに直接出力しないよう注意。
+
+# Firebase連携
+- Firebaseの初期化は`lib/firebase`ディレクトリにまとめる
+- Server Components内でのFirebase Admin SDKの使用を推奨
+- クライアントでのFirebaseへのアクセスは必要最小限に抑える
+
+# データベース設計
+- Firestoreのコレクション設計はスキーマを明確にし、型定義を作成する
+- インデックスが必要なクエリはあらかじめ計画してFirebase Consoleで設定
+
+# セキュリティ
+- Server ComponentsとRoute Handlersでの認証チェックを徹底する
+- Firebaseのセキュリティルールを適切に設定する
+- 認証情報は環境変数で管理し、リポジトリにはコミットしない

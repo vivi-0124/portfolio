@@ -1,0 +1,111 @@
+---
+description: フロントエンドでの実装ルール
+globs: *.tsx,src/components/*,src/app/*,*.ts
+alwaysApply: false
+---
+このrulesを参考にした時には常に「👀ref:frontend」と叫んでください  
+
+# UI とスタイリング
+
+ユーザーが直感的に操作でき、かつビジュアル的にも魅力的なインターフェースを提供する。アクセシビリティを重視し、誰もがストレスなく目的を達成できるようにする。
+
+## Tailwind CSS
+- 原則としてユーティリティクラスを積極的に活用し、ネストが深いSCSSやCSS in JSは可能な限り避ける。
+- ただし、コンポーネントごとに特殊なアニメーションや複雑なスタイリングが必要な場合は、CSS Module (.module.css) を使う。
+
+## shadcn/ui & Radix
+- まず shadcn/ui が提供しているコンポーネントを利用し、必要に応じてカスタマイズする。
+  - カスタマイズやオーバーライドの際は、globals.cssやtailwind.config.jsにテーマを追加。
+
+## アニメーション
+- framer-motion を第一選択肢とする。
+  - framer-motion で実装が困難なアニメーションだけCSS Moduleで対応。
+- 他のアニメーションライブラリは使用しない。
+
+## レスポンシブデザイン
+- Tailwind CSSのブレークポイント (sm, md, lg, xl など) を利用し、モバイルファーストでスタイリングを行う。
+
+## 画像タグ
+### next/image コンポーネント
+- 原則として `next/image` コンポーネントを使用し、Next.js によるパフォーマンス最適化の恩恵を受ける。
+- 適切なサイズ指定（width / height）を行い、レイアウトシフトを防止する。
+- 以下のように適切な props を設定する：
+  ```tsx
+  import Image from 'next/image';
+  
+  // 固定サイズの場合
+  <Image
+    src="/images/example.jpg"
+    width={800}
+    height={600}
+    alt="説明文"
+    priority={/* 重要な画像の場合は true */}
+  />
+  
+  // レスポンシブの場合
+  <Image
+    src="/images/example.jpg"
+    fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    alt="説明文"
+    className="object-cover"
+  />
+  ```
+- SVGやアイコンなど単純な画像や、最適化の必要がない特殊なケースのみ、通常の `<img>` タグの使用を検討する。
+
+## アイコン
+- lucide-react を利用する。セクションごとのアイコンマッピングは src/consts/category-icons.ts などで一元管理。
+
+# 実装方針
+## app以下でのページ実装
+
+- ページコンポーネントは機能単位でコンポーネントに分割する
+- Server ComponentとClient Componentを適切に使い分ける
+  - インタラクションを含まないUIパーツはServer Componentで
+  - ステート管理が必要なUIパーツはClient Componentで
+
+
+## データ取得（Server Components / Server Actions）
+- App Routerでの実装のため、Server Componentで直接async/awaitを使用する
+  ```tsx
+  async function getData() {
+    const res = await fetch('https://api.example.com/data')
+    if (!res.ok) throw new Error('Failed to fetch data')
+    return res.json()
+  }
+  
+  export default async function Page() {
+    const data = await getData()
+    return <main>{/* データを利用したUI */}</main>
+  }
+  ```
+- フォーム送信などはServer Actionsを使用する
+  ```tsx
+  // lib/actions.ts
+  'use server'
+  
+  export async function submitForm(formData: FormData) {
+    // フォームデータの処理ロジック
+  }
+  ```
+
+## ダイアログ / モーダル
+- src/components/common などに汎用のモーダルコンポーネントを用意し、複数画面で再利用できるようにする。
+- shadcn/ui が提供しているモーダル系コンポーネントをベースに拡張する。
+
+## フォーム・バリデーション
+- 大きなフォームがある場合や入力内容が複雑になる場合は React Hook Form + zod などの組み合わせを検討する。
+- バリデーションエラーや処理エラーは、shadcn/ui の toast（variant="destructive"）やインラインメッセージで通知。
+- Server ActionsとuseFormStatusを組み合わせた実装も選択肢に入れる
+
+## トーストメッセージ
+- 成功パターンの場合は variant="default" か variant="success" (カスタム定義) を使用。
+- 失敗・警告の場合は variant="destructive" を使用し、ユーザが失敗理由を把握しやすい文言を表示する。
+  - hooksは `import { useToast } from "@/hooks/use-toast"`に存在する
+
+# エラーハンドリング
+- 例外やエラーが発生した場合は、原則 toast でユーザーにフィードバックする。
+- app/error.tsxで適切なエラーバウンダリを実装する
+- Server Componentsでのエラーはerror.tsxで、Client Componentsでのエラーはtry/catchとtoastで対応する
+
+# クライアントライブラリ（フロントエンド）の注意書き

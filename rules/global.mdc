@@ -1,0 +1,182 @@
+---
+description: 全てのケースで考慮して欲しいこと
+globs: *
+alwaysApply: false
+---
+このrulesを参考にした時には常に「👀ref:global」と叫んでください  
+
+# アプリ概要
+目的: {ここにどんなことをするアプリケーションかを説明}Webアプリケーション。
+
+# 技術構成
+- フロントエンド: Next.js (App Router) + TypeScript
+- バックエンド: Firebase (Authentication, Firestore, Hosting x Functionsなど)
+- デプロイ: Next.js on Firebase（Firebase Hosting(CloudRun)）
+- スタイリング: Tailwind CSS + shadcn/ui + Radix
+- アイコン: Lucide Icons
+- アニメーション: Framer-motion
+- CI/CD: GitHub Actions（想定）、またはその他のCIツール
+
+# ディレクトリ構成
+├─ public
+│  └─ 公開する静的ファイル群
+├─ src
+│  ├─ app
+│  │  ├─ api (※Route Handlersを使用する場合)
+│  │  │  └─ route.tsx ファイル
+│  │  ├─ [route]
+│  │  │  ├─ page.tsx (ルート毎のページコンポーネント)
+│  │  │  ├─ layout.tsx (ルート毎のレイアウト)
+│  │  │  ├─ loading.tsx (ロード状態UI)
+│  │  │  ├─ error.tsx (エラーハンドリングUI)
+│  │  │  └─ not-found.tsx (404ページ)
+│  │  ├─ layout.tsx (ルートレイアウト)
+│  │  ├─ page.tsx (トップページ)
+│  │  └─ globals.css (グローバルCSS)
+│  ├─ components
+│  │  ├─ common
+│  │  │  └─ 汎用的なコンポーネント (ボタン, カード, ダイアログ等)
+│  │  ├─ layout
+│  │  │  └─ レイアウト関連のコンポーネント (Header, Footer, Sidebar等)
+│  │  ├─ ui
+│  │  │  └─ shadcn/ui や Radix UI をベースにしたUIコンポーネント
+│  │  └─ …{featurePrefix}
+│  │     └─ 機能単位のカスタムコンポーネント
+│  ├─ consts
+│  │  └─ 定数, アイコンマッピング, enum 相当の定義
+│  ├─ hooks
+│  │  └─ カスタムフック (Firebase関連、フォームロジック等)
+│  ├─ lib
+│  │  ├─ firebase
+│  │  │  └─ Firebase関連の初期化・呼び出し関数
+│  │  ├─ actions
+│  │  │  └─ Server Actionsの関数（フォーム処理など）
+│  │  ├─ localstorage
+│  │  │  └─ localStorage操作のユーティリティ
+│  │  └─ …他の外部サービス連携等があればここに配置
+│  ├─ scripts (※開発用スクリプト置き場)
+│  │  └─ ビルド/デプロイやDB初期化のスクリプト等
+│  ├─ types
+│  │  └─ 型定義ファイル (TypeScriptの宣言ファイルなど)
+│  └─ utils
+│     └─ 汎用的なユーティリティ関数 (日付処理, 文字列処理等)
+├─ .github
+│  └─ workflows (CI/CD用)
+└─ …その他の設定ファイル (package.json, tsconfig.json, .eslintrc.js, etc.)
+
+## app ディレクトリ
+- ネストされたフォルダ構造でルーティングを定義します
+- 特別なファイル規則:
+  - `page.tsx`: ルートを公開するためのページコンポーネント
+  - `layout.tsx`: ネストされたルートに共通のレイアウト
+  - `loading.tsx`: 非同期コンポーネントのローディング状態
+  - `error.tsx`: エラーハンドリングのためのUI
+  - `not-found.tsx`: 404エラーのUI
+  - `route.tsx`: API Route Handler（`api`ディレクトリ内）
+- Client ComponentとServer Componentの使い分け:
+  - デフォルトはServer Component
+  - クライアントサイドの機能（useState, useEffectなど）が必要な場合は'use client'ディレクティブを使用
+
+## components ディレクトリ
+- /common はアプリ全体で使いまわせる本当に汎用的なUIパーツを置く
+- /layout はページ全体をラップするレイアウト関連 (Header, Footer, Sidebar など)
+  - 基本的には、この中にあるレイアウトで最も適切なものを選択する。自信がない場合には確認をするように
+- /ui は主に shadcn/ui ベースの移植済みコンポーネント置き場
+- /{featurePrefix} は機能単位のカスタムコンポーネントを置く
+
+## consts ディレクトリ
+- アイコンのマッピング (src/consts/category-icons.ts 等)
+- 固定値やアプリ共通で使う定数を管理 (APIエンドポイント, 環境定数 など)
+
+## lib ディレクトリ
+- Firebase を中心とした外部サービスの初期化・呼び出しロジックをまとめる
+- Server Actions関数を格納（フォーム処理やデータ更新などのサーバーサイド機能）
+- 必要に応じてApolloやSupabaseなど、別サービスを使う場合もここに配置する想定
+
+## utils ディレクトリ
+- 純粋なJavaScriptの汎用関数(フォーマット系, バリデーション系)など
+
+
+# 命名ルール
+
+## ディレクトリ名/ファイル名
+- 小文字 + ケバブケース (kebab-case)で記載してください
+  - 例） example-component.tsx, user-list-dialog.tsx
+  - 特別ファイル (page.tsx, layout.tsx, error.tsx など) は小文字のままとする
+
+## コンポーネント名 (React)
+- パスカルケース (PascalCase)
+  - 例） ExampleComponent, UserListDialog
+
+## 関数名
+- キャメルケース(camelCase)
+  - 作成系: `create[Entity(ies)]`
+  - 更新系: `update[Entity(ies)]By[Condition]`/`update[Entity(ies)]`
+  - 削除系: `delete[Entity(ies)]By[Condition]`/`delete[Entity(ies)]`
+  - 取得系: `get[Entity(ies)]By[Condition]`/`get[Entity(ies)]`
+  - 検索系: `search[Entity(ies)]By[Condition]`/`search[Entity(ies)]`
+  - Server Actions: `action[Verb][Entity]` (例: actionCreateUser, actionUpdateProfile)
+
+## TypeScript の型定義 (interface, type)
+- パスカルケース (PascalCase)
+  - 例） UserData, KpiPayload
+
+## 定数 (定数ファイル内):
+- 全部大文字 + スネークケース (SNAKE_CASE)
+  - 例） const DEFAULT_PAGE_SIZE = 20
+
+## enum: 
+- パスカルケース (PascalCase)
+  - 例）```export enum UserRole {
+  Admin = "ADMIN",
+  Guest = "GUEST"
+}```
+
+# ファイルの参照方法
+- `src`ディレクトリ内のファイルでは、`@`プレフィックスを使用する
+  - 例：`import { db } from "@/lib/firebase"`
+
+# Server ComponentとClient Component
+- App RouterではコンポーネントはデフォルトでServer Componentとして扱われる
+  - データベースへの直接アクセス、ファイルシステム操作などが可能
+  - useState, useEffect, onClickなどのクライアントサイド機能は使用不可
+- クライアントサイド機能が必要な場合は、ファイルの先頭に`'use client'`ディレクティブを追加
+  - 例：
+  ```tsx
+  'use client'
+  
+  import { useState } from 'react'
+  
+  export default function Counter() {
+    const [count, setCount] = useState(0)
+    return (
+      <button onClick={() => setCount(count + 1)}>
+        Count: {count}
+      </button>
+    )
+  }
+  ```
+- Server ComponentとClient Componentを適切に組み合わせることでパフォーマンスを最適化する
+  - データフェッチングやロジックはServer Componentで
+  - インタラクションとステート管理はClient Componentで
+
+# データフェッチング
+- App RouterではgetServerSideProps/getStaticPropsの代わりに、直接Server Componentでasync/awaitを使用
+  - 例：
+  ```tsx
+  async function getData() {
+    const res = await fetch('https://api.example.com/data')
+    if (!res.ok) throw new Error('Failed to fetch data')
+    return res.json()
+  }
+  
+  export default async function Page() {
+    const data = await getData()
+    return <main>{JSON.stringify(data)}</main>
+  }
+  ```
+
+# コーディング規則
+- 関数やコンポーネントには適切なコメントを含めるようにする
+- コンポーネントがServer ComponentかClient Componentかを明確にする
+- フォームやデータ更新処理はServer Actionsを使用する
