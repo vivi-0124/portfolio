@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { use } from 'react';
 
 /**
  * プロジェクトデータのサンプル
@@ -96,13 +97,12 @@ export const generateStaticParams = () => {
   }));
 };
 
-interface ProjectPageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = Promise<{ id: string }>;
 
-export default function ProjectPage({ params }: ProjectPageProps) {
+export default function ProjectPage(props: {
+  params: Params;
+}) {
+  const params = use(props.params);
   const project = allProjects.find((p) => p.id === params.id);
   
   if (!project) {
