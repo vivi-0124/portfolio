@@ -1,63 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import ProjectCard from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-/**
- * すべてのプロジェクトデータ
- * 
- * ポートフォリオで表示するプロジェクト情報のサンプルデータ
- */
-const allProjects = [
-  {
-    id: "project1",
-    title: "企業Webサイト制作",
-    description: "レスポンシブデザインを採用した企業向けWebサイト。モダンなUIと高速な読み込み速度を実現。",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    category: "web" as const,
-    tags: ["HTML", "CSS", "JavaScript", "React"]
-  },
-  {
-    id: "project2",
-    title: "プロモーション動画制作",
-    description: "新商品のプロモーション動画。ストーリーテリングと視覚効果で魅力的に商品をアピール。",
-    imageUrl: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2426&auto=format&fit=crop",
-    category: "video" as const,
-    tags: ["動画編集", "After Effects", "Premiere Pro"]
-  },
-  {
-    id: "project3",
-    title: "eコマースサイト開発",
-    description: "オンラインショッピングサイトの設計・開発。ユーザーフレンドリーなインターフェースと安全な決済システム。",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2574&auto=format&fit=crop",
-    category: "web" as const,
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
-  },
-  {
-    id: "project4",
-    title: "ブランディング動画",
-    description: "企業のブランドイメージを強化するための動画制作。企業の価値観やビジョンを視覚的に表現。",
-    imageUrl: "https://images.unsplash.com/photo-1516756587022-7891ad56a8cd?q=80&w=2574&auto=format&fit=crop",
-    category: "video" as const,
-    tags: ["撮影", "編集", "After Effects", "カラーグレーディング"]
-  },
-  {
-    id: "project5",
-    title: "ポートフォリオサイト",
-    description: "クリエイター向けのポートフォリオサイト制作。作品を効果的に展示し、クリエイティブなスキルをアピール。",
-    imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2586&auto=format&fit=crop",
-    category: "web" as const,
-    tags: ["React", "Framer Motion", "CSS", "レスポンシブデザイン"]
-  },
-  {
-    id: "project6",
-    title: "イベント紹介動画",
-    description: "地域イベントのプロモーション動画制作。イベントの雰囲気や特徴を効果的に伝える映像表現。",
-    imageUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2570&auto=format&fit=crop",
-    category: "video" as const,
-    tags: ["イベント撮影", "編集", "モーショングラフィックス"]
-  }
-];
+import { allProjects } from "@/data/projects";
 
 /**
  * プロジェクト一覧ページコンポーネント

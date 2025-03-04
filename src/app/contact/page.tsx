@@ -96,7 +96,7 @@ export default function ContactPage() {
                   </svg>
                   <div>
                     <h3 className="text-lg font-medium">Eメール</h3>
-                    <p className="text-muted-foreground">contact@example.com</p>
+                    <p className="text-muted-foreground">myemail@example.com</p>
                     <p className="text-sm text-muted-foreground mt-1">平日9:00〜18:00にご返信いたします</p>
                   </div>
                 </div>
@@ -107,35 +107,8 @@ export default function ContactPage() {
                   </svg>
                   <div>
                     <h3 className="text-lg font-medium">電話</h3>
-                    <p className="text-muted-foreground">03-1234-5678</p>
+                    <p className="text-muted-foreground">090-1234-5678</p>
                     <p className="text-sm text-muted-foreground mt-1">平日10:00〜17:00</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <svg className="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
-                  </svg>
-                  <div>
-                    <h3 className="text-lg font-medium">SNS</h3>
-                    <div className="flex space-x-3 mt-2">
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.163 6.839 9.504.5.092.682-.217.682-.48 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.934.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.137 20.16 22 16.42 22 12c0-5.523-4.477-10-10-10z"></path>
-                        </svg>
-                      </a>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"></path>
-                        </svg>
-                      </a>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7.5 3.75c0 1.036-.84 1.875-1.875 1.875S3.75 4.786 3.75 3.75 4.59 1.875 5.625 1.875 7.5 2.714 7.5 3.75zM3.75 21v-14h3.75v14h-3.75zM22 21h.008v.008H22v-.008zm-5.25-15.75c-2.486 0-4.5 2.014-4.5 4.5V21H7.5v-14h3.75v2.703c.844-1.272 2.262-2.03 3.75-2.03 3.31 0 6 2.69 6 6V21h-4.25v-7.5c0-1.49-1.261-3-3-3z"></path>
-                        </svg>
-                      </a>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">SNSでも情報発信しています</p>
                   </div>
                 </div>
               </CardContent>
@@ -152,21 +125,21 @@ export default function ContactPage() {
           </h2>
           <div className="space-y-6">
             <div className="bg-card p-6 rounded-lg border shadow-sm">
-              <h3 className="text-xl font-bold mb-3">お見積りは無料ですか？</h3>
+              <h3 className="text-xl font-bold mb-3">自己紹介について</h3>
               <p className="text-muted-foreground">
-                はい、お見積りは無料で行っております。プロジェクトの詳細をお知らせいただければ、具体的なお見積りをご提示いたします。
+                私は大学でデザインと映像制作を学んでおり、Webサイト制作と動画編集を得意としています。
               </p>
             </div>
             <div className="bg-card p-6 rounded-lg border shadow-sm">
-              <h3 className="text-xl font-bold mb-3">納期はどのくらいかかりますか？</h3>
+              <h3 className="text-xl font-bold mb-3">志望動機</h3>
               <p className="text-muted-foreground">
-                プロジェクトの規模や複雑さによって異なりますが、一般的なWebサイト制作の場合は2〜4週間、動画編集は1〜2週間を目安としています。具体的な納期はプロジェクトの詳細をお伺いした上でご相談させていただきます。
+                貴社のプロジェクトに参加し、クリエイティブな視点で貢献したいと考えています。
               </p>
             </div>
             <div className="bg-card p-6 rounded-lg border shadow-sm">
-              <h3 className="text-xl font-bold mb-3">修正回数に制限はありますか？</h3>
+              <h3 className="text-xl font-bold mb-3">スキルセット</h3>
               <p className="text-muted-foreground">
-                基本的な修正は納品までに2回まで無料で対応しております。大幅な変更や追加要件については別途お見積りとなる場合がございます。
+                HTML、CSS、JavaScript、React、Next.js、Adobe Premiere、After Effectsを使用したプロジェクト経験があります。
               </p>
             </div>
           </div>

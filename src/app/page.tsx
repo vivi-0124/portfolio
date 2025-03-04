@@ -6,38 +6,13 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { FaqSection } from "@/components/sections/faq";
 import { SkillsSection } from "@/components/sections/skills";
+import { featuredProjects } from "@/data/projects";
 
 /**
  * サンプルプロジェクトデータ
  * 
  * ポートフォリオで表示するプロジェクト情報のサンプルデータ
  */
-const featuredProjects = [
-  {
-    id: "project1",
-    title: "企業Webサイト制作",
-    description: "レスポンシブデザインを採用した企業向けWebサイト。モダンなUIと高速な読み込み速度を実現。",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    category: "web" as const,
-    tags: ["HTML", "CSS", "JavaScript", "React"]
-  },
-  {
-    id: "project2",
-    title: "プロモーション動画制作",
-    description: "新商品のプロモーション動画。ストーリーテリングと視覚効果で魅力的に商品をアピール。",
-    imageUrl: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2426&auto=format&fit=crop",
-    category: "video" as const,
-    tags: ["動画編集", "After Effects", "Premiere Pro"]
-  },
-  {
-    id: "project3",
-    title: "eコマースサイト開発",
-    description: "オンラインショッピングサイトの設計・開発。ユーザーフレンドリーなインターフェースと安全な決済システム。",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2574&auto=format&fit=crop",
-    category: "web" as const,
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
-  }
-];
 
 /**
  * ホームページコンポーネント
@@ -155,11 +130,6 @@ export default function Home() {
             <Button asChild size="lg" className="mr-4">
               <Link href="/projects">
                 すべてのプロジェクトを見る
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/projects/project1">
-                企業Webサイト制作の詳細
               </Link>
             </Button>
           </div>
