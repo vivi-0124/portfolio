@@ -19,7 +19,7 @@ export const allProjects: Project[] = [
     id: "web1",
     title: "第31回名桜大学祭公式HP",
     description: "NotionSiteを使用した第31回名桜大学祭公式HPの制作",
-    imageUrl: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2370&auto=format&fit=crop",
+    imageUrl: "/meiofes31hero.png",
     category: "web",
     tags: ["Notion"],
     fullDescription: `
@@ -51,7 +51,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web2",
     title: "第31回名桜大学祭公式HP(リニューアル)",
     description: "AIを活用した大学祭公式HPのリニューアル",
-    imageUrl: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2370&auto=format&fit=crop",
+    imageUrl: "/meiofes31hero.png",
     category: "web",
     tags: ["Next.js", "TypeScript", "Tailwind CSS","Shadcn/UI","Framer Motion","Cursor","Vercel","bolt.new","NotionAPI"],
     fullDescription: `
