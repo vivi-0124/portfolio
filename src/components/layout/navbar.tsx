@@ -59,10 +59,9 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: '/', label: 'ホーム', icon: Home },
-    { href: '/projects', label: 'プロジェクト', icon: LayoutGrid },
-    { href: '/skills', label: 'スキル', icon: BarChart },
-    { href: '/contact', label: 'お問い合わせ', icon: Phone }
+    { href: '/', label: 'HOME', icon: Home },
+    { href: '/projects', label: 'PROJECTS', icon: LayoutGrid },
+    { href: '/contact', label: 'CONTACT', icon: Phone }
   ];
 
   return (

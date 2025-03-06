@@ -48,6 +48,10 @@ export default function ProjectCard({ id, title, description, imageUrl, category
           width={600}
           height={400}
           className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110"
+          onError={(e) => {
+            // フォールバック画像を設定
+            e.currentTarget.src = '/images/placeholder.png'
+          }}
         />
         <div className="absolute top-4 left-4 z-20">
           <Badge 

@@ -65,7 +65,6 @@ export default function Footer() {
       title: "リソース",
       links: [
         { name: "プロジェクト", href: "/projects" },
-        { name: "スキル", href: "/skills" },
         { name: "お問い合わせ", href: "/contact" }
       ]
     },
@@ -88,107 +87,37 @@ export default function Footer() {
     },
   ];
 
+  const navLinks = [
+    { href: '#about', label: 'ABOUT' },
+    { href: '/projects', label: 'PROJECTS' },
+    { href: '/contact', label: 'CONTACT' },
+  ];
+
   return (
-    <footer className="bg-background border-t" suppressHydrationWarning>
-      <LayoutGroup>
-        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-          
-          <div className="md:flex md:justify-between">
-            <motion.div 
-              layoutId="footer-links-section"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-6 md:mb-0"
+    <footer className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900" suppressHydrationWarning>
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
+        <div className="absolute h-full w-full bg-background [mask-image:radial-gradient(transparent,white)] opacity-25" />
+      </div>
+      <div className="relative mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 z-10">
+        {/* ナビゲーションリンク */}
+        <nav className="flex justify-center space-x-12 mb-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white hover:text-white/80 transition-colors text-sm tracking-[0.2em]"
             >
-              <Link href="/" className="flex items-center group">
-                <div className="flex items-center space-x-2">
-                  <motion.svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6, type: "spring" }}
-                    layoutId="logo-svg"
-                  >
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </motion.svg>
-                  <span className="self-center text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 transition-transform group-hover:scale-105">Portfolio</span>
-                </div>
-              </Link>
-              <p className="mt-3 text-sm text-muted-foreground max-w-xs">
-                Webサイト制作と動画編集のポートフォリオサイトです。クリエイティブな作品とスキルを紹介しています。
-              </p>
-            </motion.div>
-            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              {footerLinks.map((category, index) => (
-                <motion.div 
-                  key={category.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.1 * (index + 1),
-                    type: "spring",
-                    stiffness: 50,
-                    damping: 10
-                  }}
-                  style={{
-                    willChange: "opacity, transform"
-                  }}
-                >
-                  <h2 className="mb-6 text-sm font-semibold uppercase text-foreground">{category.title}</h2>
-                  <ul className="text-muted-foreground font-medium">
-                    {category.links.map((link, linkIndex) => (
-                      <li key={link.name} className={linkIndex !== category.links.length - 1 ? "mb-4" : ""}>
-                        {'external' in link ? (
-                          <a 
-                            href={link.href} 
-                            className="hover:text-primary transition-colors flex items-center" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                          >
-                            {'iconName' in link && <span className="mr-2">{renderIcon(link.iconName, "w-4 h-4")}</span>}
-                            {link.name}
-                          </a>
-                        ) : (
-                          <Link 
-                            href={link.href} 
-                            className="hover:text-primary transition-colors flex items-center"
-                          >
-                            {link.name}
-                          </Link>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          <Separator className="my-6" />
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <motion.div 
-              layoutId="social-links"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex mt-4 space-x-5 sm:justify-center sm:mt-0"
-            >
-            </motion.div>
-          </div>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* コピーライト */}
+        <div className="text-center text-sm text-white/80 tracking-[0.2em]">
+          © HIROTO TOUMON
         </div>
-      </LayoutGroup>
+      </div>
     </footer>
   );
 }

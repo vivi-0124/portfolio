@@ -51,7 +51,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web2",
     title: "第31回名桜大学祭公式HP(リニューアル)",
     description: "AIを活用した大学祭公式HPのリニューアル",
-    imageUrl: "/meiofes31hero.png",
+    imageUrl: "/31meiofes.jpeg",
     category: "web",
     tags: ["Next.js", "TypeScript", "Tailwind CSS","Shadcn/UI","Framer Motion","Cursor","Vercel","bolt.new","NotionAPI"],
     fullDescription: `
@@ -90,7 +90,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web3",
     title: "第32回名桜大学祭公式HP(制作中)",
     description: "AIを活用した次年度の大学祭公式HPの制作",
-    imageUrl: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2426&auto=format&fit=crop",
+    imageUrl: "/meiofes32.jpeg",
     category: "web",
     tags: ["Next.js", "TypeScript", "Tailwind CSS","Shadcn/UI","Framer Motion","Cursor","Vercel","bolt.new"],
     fullDescription: `
@@ -129,7 +129,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web4",
     title: "Webサイト4",
     description: "Webサイトの簡単な説明をここに記載します。",
-    imageUrl: "https://images.unsplash.com/photo-1416339698674-4f118dd3388b?q=80&w=2426&auto=format&fit=crop",
+    imageUrl: "/images/placeholder.png",
     category: "web",
     tags: ["Angular", "Firebase", "Material UI"],
     fullDescription: `
@@ -148,7 +148,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web5",
     title: "Webサイト5",
     description: "Webサイトの簡単な説明をここに記載します。",
-    imageUrl: "https://images.unsplash.com/photo-1492619267744-f1478db28774?q=80&w=2426&auto=format&fit=crop",
+    imageUrl: "/images/placeholder.png",
     category: "web",
     tags: ["Svelte", "Supabase", "TailwindCSS"],
     fullDescription: `
@@ -167,7 +167,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "video1",
     title: "動画制作プロジェクト",
     description: "動画プロジェクトの簡単な説明をここに記載します。",
-    imageUrl: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2426&auto=format&fit=crop",
+    imageUrl: "/images/placeholder.png",
     category: "video",
     tags: ["動画編集", "After Effects", "Premiere Pro"],
     fullDescription: `
