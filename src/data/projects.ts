@@ -49,7 +49,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
   },
   {
     id: "web2",
-    title: "第31回名桜大学祭公式HP(リニューアル)",
+    title: "第31回名桜大学祭公式HP",
     description: "AIを活用した大学祭公式HPのリニューアル",
     imageUrl: "/31meiofes.jpeg",
     category: "web",

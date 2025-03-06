@@ -179,7 +179,7 @@ export default function PageNav() {
       </div>
 
       {/* モバイル・タブレット用ボトムナビゲーション */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 lg:hidden">
+      <div className="fixed bottom-[72px] left-1/2 transform -translate-x-1/2 z-50 lg:hidden">
         <div className="flex items-center space-x-2 bg-background/80 backdrop-blur-md px-3 py-2 rounded-full shadow-lg border border-border">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -227,7 +227,7 @@ export default function PageNav() {
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
             onClick={scrollToTop}
-            className="fixed right-4 bottom-20 lg:bottom-4 z-50 bg-primary text-primary-foreground p-2 rounded-full shadow-lg"
+            className="fixed right-4 bottom-[124px] lg:bottom-4 z-50 bg-primary text-primary-foreground p-2 rounded-full shadow-lg"
             aria-label="ページトップへスクロール"
           >
             <ChevronUp className="h-5 w-5" />

@@ -89,8 +89,7 @@ export default function ProjectCard({ id, title, description, imageUrl, category
           </CardTitle>
         </CardHeader>
         <CardContent className="p-5 pt-3 flex-grow flex flex-col">
-          <CardDescription className="text-muted-foreground line-clamp-3 min-h-[4.5rem]">{description}</CardDescription>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-2 justify-center">
             {tags.slice(0, 3).map((tag) => (
               <Badge 
                 key={tag} 
