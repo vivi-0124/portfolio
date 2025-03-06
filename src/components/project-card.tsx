@@ -38,7 +38,7 @@ interface ProjectCardProps {
  */
 export default function ProjectCard({ id, title, description, imageUrl, category, tags }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${id}`} className="block h-full group">
+    <Link href={`/${id}`} className="block h-full group">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl border-opacity-70 hover:border-primary/50 group flex flex-col h-full cursor-pointer">
         <div className="relative h-52 w-full overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

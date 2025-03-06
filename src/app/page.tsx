@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { allProjects } from "@/data/projects";
 import { ProjectGrid } from "@/components/project-grid";
+import PageNav from "@/components/page-nav";
 
 /**
  * サンプルプロジェクトデータ
@@ -16,19 +17,23 @@ import { ProjectGrid } from "@/components/project-grid";
 /**
  * ホームページコンポーネント
  * 
- * ポートフォリオサイトのメインページを表示します。
- * ヒーローセクション、自己紹介、主な作品、スキル、CTAセクションを含みます。
+ * ポートフォリオサイトのLP風メインページを表示します。
+ * ヒーローセクション、自己紹介、主な作品、CTAセクションを含みます。
+ * 各セクションからそれぞれのページに遷移できるようになっています。
  */
 export default function Home() {
   return (
     <div className="bg-background">
+      {/* ページ内ナビゲーション */}
+      <PageNav />
+      
       {/* ヒーローセクション */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900">
+      <section id="hero" className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
           <div className="absolute h-full w-full bg-background [mask-image:radial-gradient(transparent,white)] opacity-25" />
         </div>
-        <div className="relative py-12 px-4 mx-auto max-w-screen-xl text-center lg:py-24 lg:px-12 z-10">
+        <div className="relative py-20 px-4 mx-auto max-w-screen-xl text-center lg:py-32 lg:px-12 z-10">
           <h1 className="mb-6 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
             HIROTO TOUMON<br/>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-pink-200">世界へようこそ</span>
@@ -38,7 +43,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <Button asChild size="lg" variant="default" className="bg-white text-blue-700 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl">
-              <Link href="/projects">
+              <Link href="#projects">
                 作品を見る
                 <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
@@ -46,7 +51,7 @@ export default function Home() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 transition-all duration-300">
-              <Link href="/contact">
+              <Link href="#contact">
                 お問い合わせ
               </Link>
             </Button>
@@ -122,6 +127,7 @@ export default function Home() {
           <ProjectGrid />
           
           <div className="flex justify-center mt-10">
+            {/* プロジェクトカードをクリックして直接アクセスできるためボタンは削除 */}
           </div>
         </div>
       </section>
@@ -129,7 +135,7 @@ export default function Home() {
       <Separator className="max-w-screen-xl mx-auto" />
 
       {/* CTA（お問い合わせ）セクション */}
-      <section className="bg-background py-16 px-4 mx-auto max-w-screen-xl lg:py-24 lg:px-6">
+      <section id="contact" className="bg-background py-16 px-4 mx-auto max-w-screen-xl lg:py-24 lg:px-6">
         <div className="max-w-screen-md mx-auto text-center">
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-foreground">
             一緒に素晴らしいプロジェクトを<br className="md:hidden" />作りませんか？
@@ -137,7 +143,7 @@ export default function Home() {
           <p className="mb-10 font-light text-muted-foreground sm:text-xl">
             ご質問やお仕事のご依頼など、お気軽にお問い合わせください
           </p>
-          <Button asChild size="lg" variant="default" className="bg-white text-blue-700 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Button asChild size="lg" variant="default" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl">
             <Link href="/contact">
               お問い合わせはこちら
               <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
