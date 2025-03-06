@@ -39,9 +39,9 @@ interface ProjectCardProps {
 export default function ProjectCard({ id, title, description, imageUrl, category, tags }: ProjectCardProps) {
   return (
     <Link href={`/${id}`} className="block h-full group">
-      <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl border-opacity-70 hover:border-primary/50 group flex flex-col h-full cursor-pointer">
-        <div className="relative h-52 w-full overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <Card className="overflow-hidden transition-all duration-300 border-border/10 hover:border-primary/20 group flex flex-col h-[250px] cursor-pointer bg-card">
+        <div className="relative h-40 w-full overflow-hidden border-b border-border/10">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <Image
             src={imageUrl}
             alt={`${title}のサムネイル画像`}
@@ -49,19 +49,19 @@ export default function ProjectCard({ id, title, description, imageUrl, category
             loading="lazy"
             width={600}
             height={400}
-            className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110"
+            className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-105"
             onError={(e: any) => {
               e.currentTarget.src = '/placeholder.png'
             }}
           />
-          <div className="absolute top-4 left-4 z-20">
+          <div className="absolute top-3 left-3 z-20">
             <Badge 
               variant={category === 'web' ? 'default' : 'secondary'}
               className={`
                 ${category === 'web' 
-                  ? 'bg-blue-500 hover:bg-blue-600' 
-                  : 'bg-purple-500 hover:bg-purple-600'} 
-                text-white font-medium px-3 py-1 shadow-md
+                  ? 'bg-blue-500/90 hover:bg-blue-600' 
+                  : 'bg-purple-500/90 hover:bg-purple-600'} 
+                text-white font-medium px-3 py-1 shadow-lg backdrop-blur-sm text-sm
               `}
               aria-label={category === 'web' ? 'Webサイト' : '動画'}
             >
@@ -83,24 +83,34 @@ export default function ProjectCard({ id, title, description, imageUrl, category
             </Badge>
           </div>
         </div>
-        <CardHeader className="p-5 pb-0">
-          <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-            {title}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-5 pt-3 flex-grow flex flex-col">
-          <div className="flex flex-wrap gap-2 mt-2 justify-center">
-            {tags.slice(0, 3).map((tag) => (
-              <Badge 
-                key={tag} 
-                variant="outline" 
-                className="bg-muted/50 text-muted-foreground border-muted-foreground/20 hover:bg-muted transition-colors duration-200"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </CardContent>
+        <div className="flex flex-col flex-grow">
+          <CardHeader className="p-4 pb-2 flex-none">
+            <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+              {title}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 pt-1 flex-grow flex flex-col justify-end">
+            <div className="flex items-center gap-1.5 justify-center overflow-hidden whitespace-nowrap">
+              {tags.slice(0, 3).map((tag, index) => (
+                <Badge 
+                  key={tag} 
+                  variant="outline" 
+                  className="bg-muted/30 text-muted-foreground border-muted-foreground/20 hover:bg-muted/50 transition-colors duration-200 px-2 py-0.5 text-sm shrink-0"
+                >
+                  {tag}
+                </Badge>
+              ))}
+              {tags.length > 3 && (
+                <Badge 
+                  variant="outline" 
+                  className="bg-muted/20 text-muted-foreground/70 border-muted-foreground/10 px-2 py-0.5 text-sm shrink-0"
+                >
+                  +{tags.length - 3}
+                </Badge>
+              )}
+            </div>
+          </CardContent>
+        </div>
       </Card>
     </Link>
   );

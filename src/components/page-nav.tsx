@@ -149,18 +149,21 @@ export default function PageNav() {
                 variant="ghost"
                 size="icon"
                 onClick={() => scrollToSection(item.id)}
-                className={`rounded-full relative transition-all duration-300 hover:bg-accent ${
-                  activeSection === item.id ? 'bg-accent text-accent-foreground' : ''
+                className={`rounded-full relative transition-all duration-300 hover:bg-accent/80 ${
+                  activeSection === item.id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                 }`}
                 title={item.label}
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-5 w-5 relative z-10" />
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute inset-0 rounded-full border-2 border-primary"
-                    transition={{ duration: 0.2 }}
-                  />
+                    className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-500/10 dark:to-purple-500/10"
+                    transition={{ duration: 0.2, type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-10 blur-sm" />
+                    <div className="absolute inset-0 rounded-full border border-blue-500/50 dark:border-blue-400/30" />
+                  </motion.div>
                 )}
               </Button>
             );
@@ -189,18 +192,21 @@ export default function PageNav() {
                 variant="ghost"
                 size="icon"
                 onClick={() => scrollToSection(item.id)}
-                className={`rounded-full relative transition-all duration-300 hover:bg-accent ${
-                  activeSection === item.id ? 'bg-accent text-accent-foreground' : ''
+                className={`rounded-full relative transition-all duration-300 hover:bg-accent/80 ${
+                  activeSection === item.id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                 }`}
                 title={item.label}
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-5 w-5 relative z-10" />
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="mobile-nav-indicator"
-                    className="absolute inset-0 rounded-full border-2 border-primary"
-                    transition={{ duration: 0.2 }}
-                  />
+                    className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-500/10 dark:to-purple-500/10"
+                    transition={{ duration: 0.2, type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-10 blur-sm" />
+                    <div className="absolute inset-0 rounded-full border border-blue-500/50 dark:border-blue-400/30" />
+                  </motion.div>
                 )}
               </Button>
             );
