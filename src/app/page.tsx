@@ -4,8 +4,8 @@ import ProjectCard from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { featuredProjects } from "@/data/projects";
-import { ProjectCarousel } from "@/components/project-carousel";
+import { allProjects } from "@/data/projects";
+import { ProjectGrid } from "@/components/project-grid";
 
 /**
  * サンプルプロジェクトデータ
@@ -119,14 +119,9 @@ export default function Home() {
             Webサイト制作から動画編集まで幅広いスキルを活かした作品です。
           </p>
           
-          <ProjectCarousel projects={featuredProjects} />
+          <ProjectGrid />
           
           <div className="flex justify-center mt-10">
-            <Button asChild size="lg" className="bg-white text-blue-700 hover:bg-blue-50">
-              <Link href="/projects">
-                すべてのプロジェクトを見る
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

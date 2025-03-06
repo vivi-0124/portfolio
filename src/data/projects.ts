@@ -129,7 +129,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web4",
     title: "Webサイト4",
     description: "Webサイトの簡単な説明をここに記載します。",
-    imageUrl: "/images/placeholder.png",
+    imageUrl: "/placeholder.png",
     category: "web",
     tags: ["Angular", "Firebase", "Material UI"],
     fullDescription: `
@@ -148,7 +148,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "web5",
     title: "Webサイト5",
     description: "Webサイトの簡単な説明をここに記載します。",
-    imageUrl: "/images/placeholder.png",
+    imageUrl: "/placeholder.png",
     category: "web",
     tags: ["Svelte", "Supabase", "TailwindCSS"],
     fullDescription: `
@@ -167,7 +167,7 @@ Notionの新機能「Notion Site」を活用することで、Notionのページ
     id: "video1",
     title: "動画制作プロジェクト",
     description: "動画プロジェクトの簡単な説明をここに記載します。",
-    imageUrl: "/images/placeholder.png",
+    imageUrl: "/placeholder.png",
     category: "video",
     tags: ["動画編集", "After Effects", "Premiere Pro"],
     fullDescription: `
