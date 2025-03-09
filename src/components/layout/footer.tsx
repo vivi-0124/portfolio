@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
  */
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900 h-[68px] flex items-center" suppressHydrationWarning>
+    <footer className="relative overflow-hidden bg-black/50 from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900 h-[68px] flex items-center" suppressHydrationWarning>
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:32px_32px]" />
         <div className="absolute h-full w-full bg-background [mask-image:radial-gradient(transparent,white)] opacity-25" />

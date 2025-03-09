@@ -2,17 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { 
-  Moon, 
-  Sun, 
+import {
   User, 
   Home,
   LayoutGrid, 
-  Phone,
   ChevronUp
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -24,7 +19,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function PageNav() {
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
-  const { theme, setTheme } = useTheme();
 
   // スクロール検出とアクティブセクションの特定
   useEffect(() => {
@@ -133,7 +127,6 @@ export default function PageNav() {
     { id: 'hero', label: 'ホーム', icon: Home },
     { id: 'about', label: '自己紹介', icon: User },
     { id: 'projects', label: '作品', icon: LayoutGrid },
-    { id: 'contact', label: 'お問い合わせ', icon: Phone }
   ];
 
   return (
@@ -168,16 +161,6 @@ export default function PageNav() {
               </Button>
             );
           })}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title="テーマ切り替え"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
         </div>
       </div>
 
@@ -211,16 +194,6 @@ export default function PageNav() {
               </Button>
             );
           })}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title="テーマ切り替え"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
         </div>
       </div>
 
