@@ -1,22 +1,33 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Calendar, User, Globe, Github, Tag } from "lucide-react";
+import { ArrowLeft, Calendar, User, Globe, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { allProjects } from "@/data/projects";
 
-export const generateStaticParams = () => {
-  // web1, web2などのプロジェクトのIDのみを対象にします
+// この関数は静的に生成するページのパスを定義します
+export async function generateStaticParams(): Promise<{ id: string }[]> {
   return allProjects
     .filter(project => project.id.startsWith('web') || project.id.startsWith('video'))
     .map((project) => ({
       id: project.id,
     }));
-};
+}
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = allProjects.find((p) => p.id === params.id);
+// パラメータ型の定義
+interface Params {
+  id: string;
+}
+
+// ページコンポーネント
+export default async function ProjectPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  const project = allProjects.find((p) => p.id === id);
   
   if (!project) {
     notFound();
