@@ -14,9 +14,11 @@ interface ProjectCardProps {
   id: string;
   title: string;
   description: string;
+  fullDescription: string;
   imageUrl: string;
   category: 'web' | 'video';
   tags: string[];
+  website: string | null;
 }
 
 /**
@@ -24,84 +26,108 @@ interface ProjectCardProps {
  * 
  * 個別のプロジェクト情報を表示するカード
  */
-function ProjectCard({ id, title, imageUrl, category, tags }: ProjectCardProps) {
+function ProjectCard({ id, title, description, fullDescription, imageUrl, category, tags, website }: ProjectCardProps) {
+  // ウェブサイトリンクがない場合のクリックを無効にするためのハンドラー
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (!website) {
+      e.preventDefault();
+    }
+  };
+  
   return (
-    <Link href={`/${id}`} className="block h-full group">
-      <Card className="overflow-hidden h-full flex flex-col border border-white/20 rounded-lg transition-all duration-500 shadow-md hover:shadow-xl hover:shadow-white/5 hover:border-white/40 relative">
-        {/* サムネイル画像部分 */}
-        <div className="relative aspect-video w-full overflow-hidden">
-          <Image
-            src={imageUrl}
-            alt={`${title}のサムネイル画像`}
-            aria-label="プロジェクトのサムネイル"
-            loading="lazy"
-            width={600}
-            height={400}
-            className="object-cover w-full h-full transition-transform duration-700 ease-in-out group-hover:scale-110"
-            onError={(e: any) => {
-              e.currentTarget.src = '/placeholder.png'
-            }}
-          />
+    <div className="group relative w-full">
+      <Link 
+        href={website || "#"} 
+        className={`block w-full ${!website ? 'cursor-default' : ''}`} 
+        target={website ? "_blank" : "_self"} 
+        rel={website ? "noopener noreferrer" : ""}
+        onClick={handleCardClick}
+      >
+        <Card className={`overflow-hidden w-full flex flex-row border rounded-lg transition-all duration-500 shadow-md relative h-[220px]
+          ${website 
+            ? 'border-white/20 hover:shadow-xl hover:shadow-white/5 hover:border-white/40' 
+            : 'border-gray-700/50 opacity-80'}`}>
           
-          {/* カテゴリバッジ */}
-          <div className="absolute top-3 left-3 z-20">
-            <Badge 
-              variant={category === 'web' ? 'default' : 'secondary'}
-              className={`
-                ${category === 'web' 
-                  ? 'bg-blue-600 group-hover:bg-blue-700' 
-                  : 'bg-purple-600 group-hover:bg-purple-700'} 
-                text-white font-medium px-3 py-1 shadow-lg backdrop-blur-sm text-sm
-              `}
-              aria-label={category === 'web' ? 'Webサイト' : '動画'}
-            >
-              {category === 'web' ? (
-                <span className="flex items-center">
-                  <svg className="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clipRule="evenodd" />
-                  </svg>
-                  Webサイト
-                </span>
-              ) : (
-                <span className="flex items-center">
-                  <svg className="w-3.5 h-3.5 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                  </svg>
-                  動画
-                </span>
-              )}
-            </Badge>
+          {/* サムネイル画像部分（左側） - 幅を40%に固定 */}
+          <div className="relative w-[40%] bg-white/5 overflow-hidden">
+            <div className="aspect-video w-full h-full flex items-center justify-center p-3">
+              <div className="relative w-full h-full">
+                <Image
+                  src={imageUrl}
+                  alt={`${title}のサムネイル画像`}
+                  aria-label="プロジェクトのサムネイル"
+                  loading="lazy"
+                  fill
+                  sizes="40vw"
+                  className={`object-contain transition-transform duration-700 ease-in-out 
+                    ${website ? 'group-hover:scale-105' : 'filter grayscale-[30%]'}`}
+                  onError={(e: any) => {
+                    e.currentTarget.src = '/placeholder.png'
+                  }}
+                />
+              </div>
+            </div>
+            
+            {/* カテゴリバッジ */}
+            <div className="absolute top-3 left-3 z-20">
+              <Badge 
+                variant={category === 'web' ? 'default' : 'secondary'}
+                className={`
+                  ${category === 'web' 
+                    ? 'bg-blue-600 group-hover:bg-blue-700' 
+                    : 'bg-purple-600 group-hover:bg-purple-700'} 
+                  text-white font-medium px-2 py-0.5 shadow-lg backdrop-blur-sm text-xs
+                `}
+                aria-label={category === 'web' ? 'Webサイト' : '動画'}
+              >
+                {category === 'web' ? 'Web' : '動画'}
+              </Badge>
+            </div>
           </div>
-        </div>
-        
-        {/* 説明とタグ */}
-        <div className="bg-slate-800 text-white p-4 flex-grow flex flex-col">
-          {/* タイトル */}
-          <h3 className="text-xl font-bold text-white mb-3 line-clamp-1">{title}</h3>
           
-          {/* タグリスト */}
-          <div className="flex flex-wrap gap-1.5 mb-3 justify-center">
-            {tags.slice(0, 3).map((tag) => (
-              <Badge 
-                key={tag} 
-                variant="outline" 
-                className="bg-slate-700 text-gray-200 border-slate-600 hover:bg-slate-600 transition-colors duration-200 px-2 py-0.5 text-xs font-medium"
-              >
-                {tag}
-              </Badge>
-            ))}
-            {tags.length > 3 && (
-              <Badge 
-                variant="outline" 
-                className="bg-slate-700 text-gray-300 border-slate-600 px-2 py-0.5 text-xs font-medium"
-              >
-                +{tags.length - 3}
-              </Badge>
+          {/* 説明とタグ（右側） - 幅を60%に固定 */}
+          <div className="w-[60%] bg-slate-800 text-white p-4 md:p-5 flex flex-col overflow-hidden">
+            {/* タイトル */}
+            <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-1 text-left">{title}</h3>
+            
+            {/* 説明文（fullDescription） */}
+            <p className="text-gray-300 text-xs md:text-sm mb-3 line-clamp-4 text-left">{fullDescription}</p>
+            
+            {/* タグリスト */}
+            <div className="flex flex-wrap gap-0.5 mt-auto pb-1 leading-tight">
+              {tags.slice(0, 12).map((tag) => (
+                <Badge 
+                  key={tag} 
+                  variant="outline" 
+                  className="bg-slate-700 text-gray-200 border-slate-600 hover:bg-slate-600 transition-colors duration-200 px-1 py-0 text-[9px] tracking-tight font-medium m-0.5"
+                >
+                  {tag}
+                </Badge>
+              ))}
+              {tags.length > 12 && (
+                <Badge 
+                  key="more" 
+                  variant="outline" 
+                  className="bg-slate-700 text-gray-300 border-slate-600 px-1 py-0 text-[9px] font-medium m-0.5"
+                >
+                  +{tags.length - 12}
+                </Badge>
+              )}
+            </div>
+            
+            {/* リンク利用可能アイコン */}
+            {website && (
+              <div className="absolute top-3 right-3">
+                <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+              </div>
             )}
           </div>
-        </div>
-      </Card>
-    </Link>
+        </Card>
+      </Link>
+    </div>
   );
 }
 
@@ -113,10 +139,19 @@ function ProjectCard({ id, title, imageUrl, category, tags }: ProjectCardProps) 
 function ProjectGrid() {
   return (
     <div className="w-full max-w-6xl mx-auto mt-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div className="flex flex-col gap-4">
         {allProjects.map((project) => (
           <div key={project.id} className="transition-all duration-300">
-            <ProjectCard {...project} />
+            <ProjectCard 
+              id={project.id}
+              title={project.title}
+              description={project.description}
+              fullDescription={project.fullDescription}
+              imageUrl={project.imageUrl}
+              category={project.category}
+              tags={project.tags}
+              website={project.website}
+            />
           </div>
         ))}
       </div>
