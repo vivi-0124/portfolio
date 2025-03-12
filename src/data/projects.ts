@@ -60,7 +60,7 @@ export const allProjects: Project[] = [
     skills: ["Next.js", "TypeScript", "Tailwind CSS","Shadcn/UI","Framer Motion","Cursor","Vercel","bolt.new"],
     date: "2024年1月",
     client: "第32回名桜大学祭実行委員会",
-    website: "https://meiofes32-lvzdgl5e8-vivi-0124s-projects.vercel.app/",
+    website: "https://meiofes32-next-js2.vercel.app/",
     github: "",
     gallery: [
       "https://images.unsplash.com/photo-1589642380614-14b3f5cf80ea?q=80&w=2370&auto=format&fit=crop"
