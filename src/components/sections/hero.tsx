@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import SectionTitle from "@/components/ui/section-title";
 
 export default function Hero() {
   return (
@@ -17,7 +16,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <section id="hero" className="relative overflow-hidden min-h-screen flex items-center justify-center">
+      <section id="hero" className="relative overflow-hidden min-h-screen flex justify-center pt-32">
         <div className="text-center z-10 px-4 sm:px-6 lg:px-8">
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter mb-4 text-white animate-fade-in">
             <span>HIROTO</span><br/>

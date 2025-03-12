@@ -3,12 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import SectionTitle from "@/components/ui/section-title";
 import { allProjects } from '@/data/projects';
 
@@ -29,7 +24,7 @@ interface ProjectCardProps {
  * 
  * 個別のプロジェクト情報を表示するカード
  */
-function ProjectCard({ id, title, description, imageUrl, category, tags }: ProjectCardProps) {
+function ProjectCard({ id, title, imageUrl, category, tags }: ProjectCardProps) {
   return (
     <Link href={`/${id}`} className="block h-full group">
       <Card className="overflow-hidden h-full flex flex-col border border-white/20 rounded-lg transition-all duration-500 shadow-md hover:shadow-xl hover:shadow-white/5 hover:border-white/40 relative">
@@ -85,7 +80,7 @@ function ProjectCard({ id, title, description, imageUrl, category, tags }: Proje
           <h3 className="text-xl font-bold text-white mb-3 line-clamp-1">{title}</h3>
           
           {/* タグリスト */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-3 justify-center">
             {tags.slice(0, 3).map((tag) => (
               <Badge 
                 key={tag} 
@@ -138,7 +133,9 @@ export default function Projects() {
   return (
     <section id="projects" className="relative overflow-hidden min-h-screen flex items-center justify-center">
       <div className="relative px-4 mx-auto max-w-screen-xl text-center w-full z-10">
-        <SectionTitle gradient="blue-purple" className="text-center mx-auto mb-16">プロジェクト一覧</SectionTitle>
+        <div className="my-16 mx-auto">
+          <SectionTitle gradient="blue-purple" className="text-center">Projects</SectionTitle>
+        </div>
         
         <ProjectGrid />
       </div>

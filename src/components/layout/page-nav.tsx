@@ -109,10 +109,10 @@ export default function PageNav() {
       const rect = element.getBoundingClientRect();
       const offsetTop = window.scrollY + rect.top;
       
-      console.log(`Scrolling to position: ${offsetTop - 20}`);
+      console.log(`Scrolling to position: ${offsetTop}`);
       
       window.scrollTo({
-        top: offsetTop - 20,
+        top: offsetTop,
         behavior: 'smooth',
       });
       
