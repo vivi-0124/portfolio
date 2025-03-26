@@ -15,6 +15,9 @@ type ProjectCardProps = Pick<MicroCMSProject, 'title' | 'description' | 'image' 
  * プロジェクトカードコンポーネント
  */
 function ProjectCard({ title, description, image, tags, link }: ProjectCardProps) {
+  // imageがない場合はダミー画像を使用
+  const imageUrl = image?.url || '/placeholder.jpg';
+
   return (
     <Link 
       href={link}
@@ -27,7 +30,7 @@ function ProjectCard({ title, description, image, tags, link }: ProjectCardProps
           {/* 画像部分 */}
           <div className="relative w-[40%] bg-black/20">
             <Image
-              src={image.url}
+              src={imageUrl}
               alt={title}
               fill
               className="object-cover"
@@ -49,7 +52,7 @@ function ProjectCard({ title, description, image, tags, link }: ProjectCardProps
             
             {/* タグ */}
             <div className="flex flex-wrap gap-1.5">
-              {tags.map((tag) => (
+              {tags && tags.map((tag) => (
                 <Badge 
                   key={tag}
                   variant="secondary"
@@ -70,7 +73,7 @@ function ProjectCard({ title, description, image, tags, link }: ProjectCardProps
  * プロジェクトグリッドコンポーネント
  */
 function ProjectGrid({ projects }: { projects: MicroCMSProject[] }) {
-  if (projects.length === 0) {
+  if (!projects || projects.length === 0) {
     return (
       <div className="w-full text-center py-20">
         <p className="text-gray-400">プロジェクトがありません</p>
@@ -99,9 +102,17 @@ function ProjectGrid({ projects }: { projects: MicroCMSProject[] }) {
  */
 export default async function Projects() {
   // ビルド時にデータを取得
-  const projects = await fetchProjects();
-  // 古い順に並び替え
-  const sortedProjects = [...projects].reverse();
+  let projects: MicroCMSProject[] = [];
+  
+  try {
+    projects = await fetchProjects();
+    // 古い順に並び替え
+    if (projects && projects.length > 0) {
+      projects = [...projects].reverse();
+    }
+  } catch (error) {
+    console.error('プロジェクトの取得に失敗しました:', error);
+  }
 
   return (
     <section id="projects" className="min-h-screen flex justify-center relative overflow-hidden">
@@ -111,7 +122,7 @@ export default async function Projects() {
             Projects
           </SectionTitle>
         </div>
-        <ProjectGrid projects={sortedProjects} />
+        <ProjectGrid projects={projects} />
       </div>
     </section>
   );
