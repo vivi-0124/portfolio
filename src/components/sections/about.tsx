@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import SectionTitle from "@/components/ui/section-title";
 
@@ -28,7 +26,7 @@ export default function About() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10"></div>
               </div>
             </div>
-            <div className="space-y-8 bg-gray-600/80 p-6 rounded-xl backdrop-blur-sm flex flex-col justify-center">
+            <div className="space-y-8 bg-[#1a1f2e] p-6 rounded-xl backdrop-blur-sm flex flex-col justify-center">
               <div className="space-y-4">
                 <p className="text-lg text-gray-100 leading-relaxed font-medium tracking-wide">
                 Next.jsを活用したAI駆動開発に取り組みながら、UI/UXデザイン、SEO対策、パフォーマンス最適化にも力を入れています。

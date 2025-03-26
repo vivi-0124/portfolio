@@ -1,8 +1,5 @@
-"use client";
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import SectionTitle from "@/components/ui/section-title";
@@ -72,33 +69,7 @@ function ProjectCard({ title, description, image, tags, link }: ProjectCardProps
 /**
  * プロジェクトグリッドコンポーネント
  */
-function ProjectGrid() {
-  const [projects, setProjects] = useState<MicroCMSProject[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadProjects() {
-      try {
-        const data = await fetchProjects();
-        setProjects([...data].reverse());
-      } catch (error) {
-        console.error('プロジェクトの読み込みに失敗しました:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadProjects();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="w-full flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
+function ProjectGrid({ projects }: { projects: MicroCMSProject[] }) {
   if (projects.length === 0) {
     return (
       <div className="w-full text-center py-20">
@@ -126,7 +97,12 @@ function ProjectGrid() {
 /**
  * プロジェクトセクションコンポーネント
  */
-export default function Projects() {
+export default async function Projects() {
+  // ビルド時にデータを取得
+  const projects = await fetchProjects();
+  // 古い順に並び替え
+  const sortedProjects = [...projects].reverse();
+
   return (
     <section id="projects" className="min-h-screen flex justify-center relative overflow-hidden">
       <div className="mx-auto max-w-screen-xl w-full relative z-10 px-4">
@@ -135,7 +111,7 @@ export default function Projects() {
             Projects
           </SectionTitle>
         </div>
-        <ProjectGrid />
+        <ProjectGrid projects={sortedProjects} />
       </div>
     </section>
   );
