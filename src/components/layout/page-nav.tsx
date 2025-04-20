@@ -55,8 +55,6 @@ export default function PageNav() {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          const offsetTop = window.scrollY + rect.top;
-          const offsetHeight = element.offsetHeight;
           
           // セクションがビューポートに表示されているかをチェック
           const isSectionVisible = (
@@ -107,12 +105,12 @@ export default function PageNav() {
     if (element) {
       // セクションの位置を取得
       const rect = element.getBoundingClientRect();
-      const offsetTop = window.scrollY + rect.top;
+      const scrollPosition = window.scrollY + rect.top;
       
-      console.log(`Scrolling to position: ${offsetTop}`);
+      console.log(`Scrolling to position: ${scrollPosition}`);
       
       window.scrollTo({
-        top: offsetTop,
+        top: scrollPosition,
         behavior: 'smooth',
       });
       
