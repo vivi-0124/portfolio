@@ -1,20 +1,23 @@
 ---
 description: 全てのケースで考慮して欲しいこと
 globs: *
+alwaysApply: false
 ---
 このrulesを参考にした時には常に「👀ref:global」と叫んでください  
 
 # アプリ概要
-目的: {ここにどんなことをするアプリケーションかを説明}Webアプリケーション。
+目的: ポートフォリオサイト。
 
 # 技術構成
 - フロントエンド: Next.js (App Router) + TypeScript
-- バックエンド: Firebase (Authentication, Firestore, Hosting x Functionsなど)
-- デプロイ: Next.js on Firebase（Firebase Hosting(CloudRun)）
+- バックエンド: Next.js
 - スタイリング: Tailwind CSS + shadcn/ui + Radix
 - アイコン: Lucide Icons
 - アニメーション: Framer-motion
-- CI/CD: GitHub Actions（想定）、またはその他のCIツール
+- コンテンツ管理: microCMS
+- ソースコード管理: GitHub
+- インフラ: Vercel
+- CI/CD: Vercel
 
 # ディレクトリ構成
 ├─ public

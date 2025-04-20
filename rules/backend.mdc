@@ -1,6 +1,7 @@
 ---
 description: バックエンド
 globs: *.tsx,*.ts
+alwaysApply: false
 ---
 このrulesを参考にした時には常に「👀ref:backend」と叫んでください  
 

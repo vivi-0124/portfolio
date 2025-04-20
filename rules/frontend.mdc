@@ -82,11 +82,6 @@ alwaysApply: false
 - src/components/common などに汎用のモーダルコンポーネントを用意し、複数画面で再利用できるようにする。
 - shadcn/ui が提供しているモーダル系コンポーネントをベースに拡張する。
 
-## フォーム・バリデーション
-- 大きなフォームがある場合や入力内容が複雑になる場合は React Hook Form + zod などの組み合わせを検討する。
-- バリデーションエラーや処理エラーは、shadcn/ui の toast（variant="destructive"）やインラインメッセージで通知。
-- Server ActionsとuseFormStatusを組み合わせた実装も選択肢に入れる
-
 ## トーストメッセージ
 - 成功パターンの場合は variant="default" か variant="success" (カスタム定義) を使用。
 - 失敗・警告の場合は variant="destructive" を使用し、ユーザが失敗理由を把握しやすい文言を表示する。
