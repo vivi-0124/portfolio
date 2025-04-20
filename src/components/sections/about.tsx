@@ -17,7 +17,7 @@ export default function About() {
             <div className="flex justify-center items-center">
               <div className="relative w-72 h-72 rounded-full border-4 border-purple-500/50 shadow-xl transform hover:scale-105 transition-all duration-300">
                 <Image
-                  src="/about.svg"
+                  src="/me.jpeg"
                   alt="Profile"
                   fill
                   className="rounded-full object-cover"
