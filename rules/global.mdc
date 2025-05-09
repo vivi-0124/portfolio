@@ -8,16 +8,18 @@ alwaysApply: false
 # アプリ概要
 目的: ポートフォリオサイト。
 
-# 技術構成
+# 技術スタック
 - フロントエンド: Next.js (App Router) + TypeScript
 - バックエンド: Next.js
 - スタイリング: Tailwind CSS + shadcn/ui + Radix
-- アイコン: Lucide Icons
 - アニメーション: Framer-motion
+- アイコン: Lucide Icons
 - コンテンツ管理: microCMS
+- パッケージマネージャー/ランタイム: Bun
 - ソースコード管理: GitHub
 - インフラ: Vercel
 - CI/CD: Vercel
+- 開発ツール: ESLint + Prettier
 
 # ディレクトリ構成
 ├─ public

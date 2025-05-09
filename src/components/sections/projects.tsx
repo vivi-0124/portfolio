@@ -18,53 +18,64 @@ function ProjectCard({ title, description, image, tags, link }: ProjectCardProps
   // imageがない場合はダミー画像を使用
   const imageUrl = image?.url || '/placeholder.jpg';
 
+  // カードコンテンツを定義
+  const card = (
+    <Card className="relative overflow-hidden border-0 bg-[#1a1f2e] h-auto md:h-[220px]">
+      <div className="flex flex-col md:flex-row h-full">
+        {/* 画像部分 */}
+        <div className="relative w-full h-48 md:h-auto md:w-[40%] bg-black/20">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 400px"
+          />
+        </div>
+
+        {/* コンテンツ部分 */}
+        <div className="flex-1 p-4 md:p-6 flex flex-col justify-between">
+          <div className="space-y-2 md:space-y-4">
+            <div className="flex items-start justify-between">
+              <h3 className="text-xl md:text-2xl font-bold text-white pr-8">{title}</h3>
+              <ExternalLink className="w-5 h-5 text-blue-400 flex-shrink-0 transform transition-transform group-hover:scale-110" />
+            </div>
+            <p className="text-gray-400 text-sm line-clamp-6 md:line-clamp-3 whitespace-pre-line">
+              {description}
+            </p>
+          </div>
+          
+          {/* タグ */}
+          <div className="flex flex-wrap gap-1.5 mt-3 md:mt-0">
+            {tags && tags.map((tag) => (
+              <Badge
+                key={tag}
+                variant="secondary"
+                className="bg-[#4b5563]/30 hover:bg-[#4b5563]/40 text-gray-300 text-[11px] px-2 py-0.5 font-normal"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+
+  // linkがない場合はdivでラップ
+  if (!link) {
+    return <div className="block w-full group">{card}</div>;
+  }
+
+  // リンクがある場合はLinkでラップ
   return (
-    <Link 
+    <Link
       href={link}
       target="_blank"
       rel="noopener noreferrer"
       className="block w-full group"
     >
-      <Card className="relative overflow-hidden border-0 bg-[#1a1f2e] h-auto md:h-[220px]">
-        <div className="flex flex-col md:flex-row h-full">
-          {/* 画像部分 */}
-          <div className="relative w-full h-48 md:h-auto md:w-[40%] bg-black/20">
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 400px"
-            />
-          </div>
-
-          {/* コンテンツ部分 */}
-          <div className="flex-1 p-4 md:p-6 flex flex-col justify-between">
-            <div className="space-y-2 md:space-y-4">
-              <div className="flex items-start justify-between">
-                <h3 className="text-xl md:text-2xl font-bold text-white pr-8">{title}</h3>
-                <ExternalLink className="w-5 h-5 text-blue-400 flex-shrink-0 transform transition-transform group-hover:scale-110" />
-              </div>
-              <p className="text-gray-400 text-sm line-clamp-6 md:line-clamp-3 whitespace-pre-line">
-                {description}
-              </p>
-            </div>
-            
-            {/* タグ */}
-            <div className="flex flex-wrap gap-1.5 mt-3 md:mt-0">
-              {tags && tags.map((tag) => (
-                <Badge 
-                  key={tag}
-                  variant="secondary"
-                  className="bg-[#4b5563]/30 hover:bg-[#4b5563]/40 text-gray-300 text-[11px] px-2 py-0.5 font-normal"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Card>
+      {card}
     </Link>
   );
 }
